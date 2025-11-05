@@ -1,5 +1,7 @@
 import GlassCard from "./GlassCard";
 import { GraduationCap, Award } from "lucide-react";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const education = {
   degree: "B.E CSE",
@@ -36,16 +38,29 @@ const certifications = [
 ];
 
 export default function Education() {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section className="py-16 md:py-24 relative" id="education">
+    <section className="py-16 md:py-24 relative" id="education" aria-labelledby="education-heading">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
       
-      <div className="relative container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
+      <div className="relative container mx-auto px-4" ref={ref}>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12"
+          id="education-heading"
+        >
           <span className="text-primary font-mono">~/</span>education & certifications
-        </h2>
+        </motion.h2>
 
         <div className="max-w-4xl mx-auto space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
           <GlassCard className="p-6 md:p-8">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
@@ -59,12 +74,23 @@ export default function Education() {
               </div>
             </div>
           </GlassCard>
+          </motion.div>
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <h3 className="text-xl font-semibold text-foreground mb-4 ml-2">Certifications & Courses</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {certifications.map((cert, index) => (
-                <GlassCard key={index} className="p-4 hover-elevate" data-testid={`card-cert-${index}`}>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.4 + 0.1 * index }}
+                >
+                <GlassCard className="p-4 hover-elevate h-full" data-testid={`card-cert-${index}`}>
                   <div className="flex items-start gap-3">
                     <Award className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
                     <div>
@@ -76,9 +102,10 @@ export default function Education() {
                     </div>
                   </div>
                 </GlassCard>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

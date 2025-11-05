@@ -1,5 +1,7 @@
 import GlassCard from "./GlassCard";
 import { Container, GitBranch, Cloud, Box, Code, Database, Activity, Shield } from "lucide-react";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const skillCategories = [
   {
@@ -45,20 +47,34 @@ const skillCategories = [
 ];
 
 export default function Skills() {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section className="py-16 md:py-24 relative" id="skills">
+    <section className="py-16 md:py-24 relative" id="skills" aria-labelledby="skills-heading">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
       
-      <div className="relative container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
+      <div className="relative container mx-auto px-4" ref={ref}>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12"
+          id="skills-heading"
+        >
           <span className="text-primary font-mono">~/</span>skills
-        </h2>
+        </motion.h2>
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => {
             const Icon = category.icon;
             return (
-              <GlassCard key={index} className="p-6 hover-elevate" data-testid={`card-skill-${index}`}>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.1 * index }}
+              >
+              <GlassCard className="p-6 hover-elevate h-full" data-testid={`card-skill-${index}`}>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
                     <Icon className="w-5 h-5 text-primary" />
@@ -78,11 +94,17 @@ export default function Skills() {
                   ))}
                 </div>
               </GlassCard>
+              </motion.div>
             );
           })}
         </div>
 
-        <div className="max-w-4xl mx-auto mt-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="max-w-4xl mx-auto mt-8"
+        >
           <GlassCard className="p-6">
             <h3 className="text-lg font-semibold text-foreground mb-4">Additional Skills</h3>
             <div className="flex flex-wrap gap-2">
@@ -98,7 +120,7 @@ export default function Skills() {
               )}
             </div>
           </GlassCard>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

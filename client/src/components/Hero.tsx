@@ -1,9 +1,11 @@
 import GlassCard from "./GlassCard";
-import { Terminal, MapPin } from "lucide-react";
+import { Terminal, MapPin, Download } from "lucide-react";
+import { motion } from "framer-motion";
+import resumePdf from "@assets/Resume_1762335533633.pdf";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" id="home">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" id="home" role="banner">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900" />
       
       <div className="absolute inset-0 overflow-hidden">
@@ -14,6 +16,11 @@ export default function Hero() {
 
       <div className="relative z-10 container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
           <GlassCard className="p-8 md:p-12">
             <div className="flex items-center justify-center mb-6">
               <Terminal className="w-12 h-12 text-primary" />
@@ -41,23 +48,36 @@ export default function Hero() {
               CI/CD pipelines, and cloud services.
             </p>
 
-            <div className="flex gap-4 justify-center mt-8">
+            <div className="flex flex-wrap gap-4 justify-center mt-8">
               <a 
                 href="#contact" 
-                className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover-elevate active-elevate-2"
+                className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover-elevate active-elevate-2 transition-all"
                 data-testid="button-contact"
+                aria-label="Navigate to contact section"
               >
                 Get In Touch
               </a>
               <a 
                 href="#experience" 
-                className="px-6 py-3 bg-white/5 text-foreground border border-white/10 rounded-lg font-medium hover-elevate active-elevate-2"
+                className="px-6 py-3 bg-white/5 text-foreground border border-white/10 rounded-lg font-medium hover-elevate active-elevate-2 transition-all"
                 data-testid="button-experience"
+                aria-label="Navigate to experience section"
               >
                 View Experience
               </a>
+              <a 
+                href={resumePdf}
+                download="Syed_Ahamed_Resume.pdf"
+                className="px-6 py-3 bg-emerald-600 text-white border border-emerald-500 rounded-lg font-medium hover-elevate active-elevate-2 transition-all flex items-center gap-2"
+                data-testid="button-download-resume"
+                aria-label="Download resume as PDF"
+              >
+                <Download className="w-4 h-4" />
+                Download Resume
+              </a>
             </div>
           </GlassCard>
+          </motion.div>
         </div>
       </div>
     </section>

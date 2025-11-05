@@ -1,6 +1,8 @@
 import { useState } from "react";
 import GlassCard from "./GlassCard";
 import { ChevronDown, ChevronUp, Building2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const experiences = [
   {
@@ -40,19 +42,32 @@ const experiences = [
 
 export default function Experience() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section className="py-16 md:py-24 relative" id="experience">
+    <section className="py-16 md:py-24 relative" id="experience" aria-labelledby="experience-heading">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
       
-      <div className="relative container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
+      <div className="relative container mx-auto px-4" ref={ref}>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12"
+          id="experience-heading"
+        >
           <span className="text-primary font-mono">~/</span>experience
-        </h2>
+        </motion.h2>
 
         <div className="max-w-4xl mx-auto space-y-6">
           {experiences.map((exp, index) => (
-            <GlassCard key={index} className="overflow-hidden">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+            >
+            <GlassCard className="overflow-hidden">
               <button
                 onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                 className="w-full p-6 flex items-start justify-between text-left hover-elevate"
@@ -80,18 +95,26 @@ export default function Experience() {
               </button>
 
               {expandedIndex === index && (
-                <div className="px-6 pb-6 border-t border-white/10">
-                  <ul className="mt-4 space-y-3">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i} className="flex gap-3 text-foreground/80 text-sm leading-relaxed">
-                        <span className="text-primary flex-shrink-0 font-mono">▸</span>
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="px-6 pb-6 border-t border-white/10">
+                    <ul className="mt-4 space-y-3">
+                      {exp.achievements.map((achievement, i) => (
+                        <li key={i} className="flex gap-3 text-foreground/80 text-sm leading-relaxed">
+                          <span className="text-primary flex-shrink-0 font-mono">▸</span>
+                          <span>{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
               )}
             </GlassCard>
+            </motion.div>
           ))}
         </div>
       </div>

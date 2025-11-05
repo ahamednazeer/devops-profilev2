@@ -1,5 +1,7 @@
 import GlassCard from "./GlassCard";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const contactInfo = [
   {
@@ -23,14 +25,22 @@ const contactInfo = [
 ];
 
 export default function Contact() {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <section className="py-16 md:py-24 relative" id="contact">
+    <section className="py-16 md:py-24 relative" id="contact" aria-labelledby="contact-heading">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
       
-      <div className="relative container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
+      <div className="relative container mx-auto px-4" ref={ref}>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12"
+          id="contact-heading"
+        >
           <span className="text-primary font-mono">~/</span>contact
-        </h2>
+        </motion.h2>
 
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -46,9 +56,8 @@ export default function Contact() {
                 </>
               );
 
-              return contact.href ? (
+              const card = contact.href ? (
                 <a
-                  key={index}
                   href={contact.href}
                   className="block"
                   data-testid={`link-contact-${contact.label.toLowerCase()}`}
@@ -58,13 +67,29 @@ export default function Contact() {
                   </GlassCard>
                 </a>
               ) : (
-                <GlassCard key={index} className="p-6 text-center h-full">
+                <GlassCard className="p-6 text-center h-full">
                   {content}
                 </GlassCard>
+              );
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.1 * (index + 1) }}
+                >
+                  {card}
+                </motion.div>
               );
             })}
           </div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
           <GlassCard className="p-6 md:p-8">
             <div className="bg-gradient-to-r from-slate-800/50 to-slate-900/50 px-6 py-3 flex items-center gap-2 border border-white/10 rounded-lg mb-6">
               <Send className="w-4 h-4 text-primary" />
@@ -97,6 +122,7 @@ export default function Contact() {
               </div>
             </div>
           </GlassCard>
+          </motion.div>
         </div>
       </div>
     </section>

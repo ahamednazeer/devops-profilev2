@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import GlassCard from "./GlassCard";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const profileText = `Dynamic DevOps Engineer with over two years of experience in managing and 
 automating large-scale infrastructure across maritime environments. Expertise in 
@@ -17,27 +19,39 @@ empower teams to proactively address system challenges.`;
 export default function About() {
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { ref, isVisible } = useScrollAnimation();
 
   useEffect(() => {
-    if (currentIndex < profileText.length) {
+    if (currentIndex < profileText.length && isVisible) {
       const timeout = setTimeout(() => {
         setDisplayedText(profileText.slice(0, currentIndex + 1));
         setCurrentIndex(currentIndex + 1);
       }, 10);
       return () => clearTimeout(timeout);
     }
-  }, [currentIndex]);
+  }, [currentIndex, isVisible]);
 
   return (
-    <section className="py-16 md:py-24 relative" id="about">
+    <section className="py-16 md:py-24 relative" id="about" aria-labelledby="about-heading">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
       
-      <div className="relative container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
+      <div className="relative container mx-auto px-4" ref={ref}>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12"
+          id="about-heading"
+        >
           <span className="text-primary font-mono">~/</span>about
-        </h2>
+        </motion.h2>
 
-        <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="max-w-4xl mx-auto"
+        >
           <GlassCard className="overflow-hidden">
             <div className="bg-gradient-to-r from-slate-800/50 to-slate-900/50 px-6 py-3 flex items-center gap-2 border-b border-white/10">
               <div className="flex gap-2">
@@ -58,7 +72,7 @@ export default function About() {
               </div>
             </div>
           </GlassCard>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
