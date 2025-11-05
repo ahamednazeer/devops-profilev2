@@ -15,7 +15,7 @@ binding = "ASSETS"
 name = "devops-profilev2-dev"
 vars = { NODE_ENV = "development" }
 
-[env.production]  
+[env.prod]  
 name = "devops-profilev2"
 vars = { NODE_ENV = "production" }
 
