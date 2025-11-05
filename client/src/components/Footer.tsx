@@ -28,14 +28,6 @@ export default function Footer() {
             <Heart className="w-4 h-4 text-red-500 animate-pulse inline" /> 
             for DevOps.
           </p>
-          
-          <div className="flex items-center justify-center gap-2 flex-wrap text-muted-foreground/80 text-xs md:text-sm">
-            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-medium hover:border-primary/50 transition-colors">React</span>
-            <span className="text-white/30">•</span>
-            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-medium hover:border-primary/50 transition-colors">TypeScript</span>
-            <span className="text-white/30">•</span>
-            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-medium hover:border-primary/50 transition-colors">Tailwind CSS</span>
-          </div>
         </motion.div>
       </div>
     </footer>
