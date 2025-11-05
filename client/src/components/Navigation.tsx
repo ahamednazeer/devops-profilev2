@@ -15,10 +15,15 @@ const navItems = [
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      setScrollProgress(scrolled);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -32,9 +37,17 @@ export default function Navigation() {
       role="navigation"
       aria-label="Main navigation"
     >
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/5">
+        <motion.div
+          className="h-full bg-gradient-to-r from-primary via-cyan-500 to-primary"
+          style={{ width: `${scrollProgress}%` }}
+          transition={{ duration: 0.1 }}
+        />
+      </div>
+      
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <a href="#home" className="font-mono text-xl font-bold text-primary" data-testid="link-home">
+          <a href="#home" className="font-mono text-xl font-bold text-primary hover:scale-110 transition-transform" data-testid="link-home">
             &lt;SA/&gt;
           </a>
 
@@ -43,10 +56,11 @@ export default function Navigation() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                className="relative text-foreground/80 hover:text-primary transition-colors font-medium group"
                 data-testid={`link-${item.label.toLowerCase()}`}
               >
                 {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
               </a>
             ))}
             <a

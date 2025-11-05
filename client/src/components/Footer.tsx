@@ -1,20 +1,42 @@
+import { motion } from "framer-motion";
+import { Heart, Code } from "lucide-react";
+
 export default function Footer() {
   return (
-    <footer className="relative py-8 border-t border-white/10">
-      <div className="absolute inset-0 bg-slate-950" />
+    <footer className="relative py-12 border-t border-white/20 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900 to-slate-950" />
+      
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
       
       <div className="relative container mx-auto px-4">
-        <div className="text-center">
-          <p className="font-mono text-sm text-muted-foreground mb-2">
-            <span className="text-primary">portfolio@syed-ahamed</span>:~$ █
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Code className="w-5 h-5 text-primary animate-pulse" />
+            <p className="font-mono text-base text-foreground">
+              <span className="text-primary">portfolio@syed-ahamed</span>:~$ █
+            </p>
+          </div>
+          
+          <p className="text-foreground/80 text-sm md:text-base mb-3 flex items-center justify-center gap-2">
+            © {new Date().getFullYear()} Syed Ahamed. Built with 
+            <Heart className="w-4 h-4 text-red-500 animate-pulse inline" /> 
+            for DevOps.
           </p>
-          <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Syed Ahamed. Built with passion for DevOps.
-          </p>
-          <p className="text-muted-foreground/60 text-xs mt-2">
-            React • TypeScript • Tailwind CSS
-          </p>
-        </div>
+          
+          <div className="flex items-center justify-center gap-2 flex-wrap text-muted-foreground/80 text-xs md:text-sm">
+            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-medium hover:border-primary/50 transition-colors">React</span>
+            <span className="text-white/30">•</span>
+            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-medium hover:border-primary/50 transition-colors">TypeScript</span>
+            <span className="text-white/30">•</span>
+            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-medium hover:border-primary/50 transition-colors">Tailwind CSS</span>
+          </div>
+        </motion.div>
       </div>
     </footer>
   );

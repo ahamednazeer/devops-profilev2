@@ -74,19 +74,19 @@ export default function Skills() {
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.1 * index }}
               >
-              <GlassCard className="p-6 hover-elevate h-full" data-testid={`card-skill-${index}`}>
+              <GlassCard className="p-6 hover-elevate h-full group transition-all duration-300" data-testid={`card-skill-${index}`}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <Icon className="w-6 h-6 text-primary group-hover:text-cyan-400 transition-colors" />
                   </div>
-                  <h3 className="font-semibold text-foreground">{category.category}</h3>
+                  <h3 className="font-semibold text-foreground text-lg">{category.category}</h3>
                 </div>
                 
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 bg-white/5 border border-white/10 rounded-md text-sm text-foreground/90 font-mono"
+                      className="px-3 py-1.5 bg-gradient-to-r from-white/5 to-white/10 border border-white/20 rounded-lg text-sm text-foreground/90 font-mono hover:border-primary/50 hover:bg-primary/10 transition-all duration-200 cursor-default shadow-sm"
                       data-testid={`badge-skill-${skill.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {skill}
@@ -105,17 +105,23 @@ export default function Skills() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="max-w-4xl mx-auto mt-8"
         >
-          <GlassCard className="p-6">
-            <h3 className="text-lg font-semibold text-foreground mb-4">Additional Skills</h3>
-            <div className="flex flex-wrap gap-2">
+          <GlassCard className="p-6 md:p-8 bg-gradient-to-br from-white/5 to-white/10">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="h-1 w-8 bg-gradient-to-r from-primary to-cyan-500 rounded-full" />
+              <h3 className="text-xl font-semibold text-foreground">Additional Skills</h3>
+            </div>
+            <div className="flex flex-wrap gap-3">
               {["Linux (Ubuntu)", "Ansible", "Terraform", "NGINX Ingress", "Istio Mesh", "Configuration Management"].map(
                 (skill, i) => (
-                  <span
+                  <motion.span
                     key={i}
-                    className="px-3 py-1 bg-primary/10 border border-primary/20 rounded-md text-sm text-foreground/90"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ delay: 0.7 + (i * 0.1), duration: 0.3 }}
+                    className="px-4 py-2 bg-gradient-to-r from-primary/20 to-cyan-500/20 border border-primary/30 rounded-lg text-sm text-foreground/90 font-medium hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all duration-200 cursor-default"
                   >
                     {skill}
-                  </span>
+                  </motion.span>
                 )
               )}
             </div>

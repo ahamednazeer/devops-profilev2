@@ -52,23 +52,39 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-4xl mx-auto"
         >
-          <GlassCard className="overflow-hidden">
-            <div className="bg-gradient-to-r from-slate-800/50 to-slate-900/50 px-6 py-3 flex items-center gap-2 border-b border-white/10">
+          <GlassCard className="overflow-hidden shadow-2xl hover:shadow-primary/10 transition-shadow duration-500">
+            <div className="bg-gradient-to-r from-slate-800/70 to-slate-900/70 px-6 py-4 flex items-center gap-3 border-b border-white/20">
               <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
+                <motion.div
+                  animate={{ opacity: [1, 0.5, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-3 h-3 rounded-full bg-red-500 shadow-lg shadow-red-500/50"
+                />
+                <motion.div
+                  animate={{ opacity: [1, 0.5, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+                  className="w-3 h-3 rounded-full bg-yellow-500 shadow-lg shadow-yellow-500/50"
+                />
+                <motion.div
+                  animate={{ opacity: [1, 0.5, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
+                  className="w-3 h-3 rounded-full bg-green-500 shadow-lg shadow-green-500/50"
+                />
               </div>
-              <span className="font-mono text-sm text-muted-foreground ml-4">
-                portfolio@syed-ahamed:~/profile
+              <span className="font-mono text-sm md:text-base text-foreground/80 ml-4 flex items-center gap-2">
+                <span className="text-primary">portfolio@syed-ahamed</span>
+                <span className="text-white/30">:</span>
+                <span className="text-cyan-400">~/profile</span>
               </span>
             </div>
 
-            <div className="p-6 md:p-8 font-mono text-sm">
-              <div className="text-primary mb-2">$ cat profile.txt</div>
-              <div className="text-foreground/90 whitespace-pre-wrap leading-relaxed">
+            <div className="p-6 md:p-10 font-mono text-sm md:text-base bg-gradient-to-b from-transparent to-white/5">
+              <div className="text-primary mb-4 flex items-center gap-2">
+                <span className="text-emerald-400">$</span> cat profile.txt
+              </div>
+              <div className="text-foreground/90 whitespace-pre-wrap leading-relaxed pl-4 border-l-2 border-primary/30">
                 {displayedText}
-                <span className="inline-block w-2 h-4 bg-primary animate-blink ml-1" />
+                <span className="inline-block w-2 h-5 bg-primary animate-blink ml-1" />
               </div>
             </div>
           </GlassCard>

@@ -59,10 +59,10 @@ export default function Contact() {
               const card = contact.href ? (
                 <a
                   href={contact.href}
-                  className="block"
+                  className="block group"
                   data-testid={`link-contact-${contact.label.toLowerCase()}`}
                 >
-                  <GlassCard className="p-6 text-center hover-elevate active-elevate-2 h-full">
+                  <GlassCard className="p-6 text-center hover-elevate active-elevate-2 h-full transition-all duration-300 hover:border-primary/50">
                     {content}
                   </GlassCard>
                 </a>
@@ -104,19 +104,24 @@ export default function Contact() {
                 or just having a chat about DevOps and cloud infrastructure.
               </p>
               
-              <div className="flex flex-wrap gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
                 <a
                   href="mailto:ahamednazeer202@gmail.com"
-                  className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover-elevate active-elevate-2"
+                  className="group px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover-elevate active-elevate-2 transition-all relative overflow-hidden"
                   data-testid="button-email"
                 >
-                  Send Email
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <Mail className="w-4 h-4" />
+                    Send Email
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
                 <a
                   href="tel:+918220669990"
-                  className="px-6 py-3 bg-white/5 text-foreground border border-white/10 rounded-lg font-medium hover-elevate active-elevate-2"
+                  className="px-6 py-3 bg-white/5 text-foreground border border-white/10 rounded-lg font-medium hover:bg-white/10 hover-elevate active-elevate-2 transition-all flex items-center justify-center gap-2"
                   data-testid="button-call"
                 >
+                  <Phone className="w-4 h-4" />
                   Call Me
                 </a>
               </div>
