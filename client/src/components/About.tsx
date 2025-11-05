@@ -3,7 +3,7 @@ import GlassCard from "./GlassCard";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
-const profileText = `Dynamic DevOps Engineer with over two years of experience in managing and 
+const profileText = `dynamic DevOps Engineer with over two years of experience in managing and 
 automating large-scale infrastructure across maritime environments. Expertise in 
 containerization technologies such as Docker and Kubernetes, alongside strong 
 capabilities in implementing CI/CD pipelines using GitLab and GoCD.
