@@ -1,5 +1,5 @@
 import GlassCard from "./GlassCard";
-import { Terminal, MapPin, Download, Sparkles } from "lucide-react";
+import { Terminal, MapPin, Download } from "lucide-react";
 import { motion } from "framer-motion";
 import resumePdf from "@assets/Resume_1762335533633.pdf";
 
@@ -30,13 +30,7 @@ export default function Hero() {
             >
               <div className="relative">
                 <Terminal className="w-12 h-12 md:w-14 md:h-14 text-primary" />
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute -top-1 -right-1"
-                >
-                  <Sparkles className="w-5 h-5 text-cyan-400" />
-                </motion.div>
+
               </div>
             </motion.div>
             
