@@ -1,4 +1,4 @@
-name = "devops-profilev2"
+name = "test-devops"
 main = "dist/cf-worker.js"
 compatibility_date = "2025-11-05"
 compatibility_flags = ["nodejs_compat"]
