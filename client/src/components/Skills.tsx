@@ -1,49 +1,79 @@
 import GlassCard from "./GlassCard";
-import { Container, GitBranch, Cloud, Box, Code, Database, Activity, Shield } from "lucide-react";
+import { Container, GitBranch, Cloud, Box, Code, Database, Activity, Shield, Settings, Network, Terminal, Gauge, Users, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const skillCategories = [
   {
-    category: "Containerization",
-    icon: Container,
-    skills: ["Docker"],
-  },
-  {
-    category: "CI/CD Tools",
-    icon: GitBranch,
-    skills: ["GitLab CI/CD", "GoCD", "Jenkins"],
-  },
-  {
-    category: "Cloud Platforms",
-    icon: Cloud,
-    skills: ["Amazon Web Services (AWS)", "Microsoft Azure", "Google Cloud"],
-  },
-  {
-    category: "Orchestration",
-    icon: Box,
-    skills: ["Kubernetes", "AWS EKS"],
-  },
-  {
-    category: "Scripting",
-    icon: Code,
-    skills: ["Bash", "Python"],
-  },
-  {
-    category: "Database Management",
-    icon: Database,
-    skills: ["PostgreSQL", "MySQL", "CouchDB"],
-  },
-  {
-    category: "Monitoring & Logging",
-    icon: Activity,
-    skills: ["Prometheus", "Grafana", "InfluxDB", "Telegraf", "API Monitoring"],
-  },
-  {
-    category: "Security",
-    icon: Shield,
-    skills: ["Teleport", "Self-hosted VPN"],
-  },
+  category: "Containerization",
+  icon: Container,
+  skills: ["Docker"],
+},
+{
+  category: "CI/CD Tools",
+  icon: GitBranch,
+  skills: ["GitLab CI/CD", "GoCD", "Jenkins"],
+},
+{
+  category: "Cloud Platforms",
+  icon: Cloud,
+  skills: ["Amazon Web Services (AWS)", "Microsoft Azure", "Google Cloud"],
+},
+{
+  category: "Orchestration",
+  icon: Box,
+  skills: ["Kubernetes", "AWS EKS", "Azure AKS", "OpenShift","Helm Charts"],
+},
+{
+  category: "Scripting",
+  icon: Code,
+  skills: ["Bash", "Python"],
+},
+{
+  category: "Database Management",
+  icon: Database,
+  skills: ["PostgreSQL", "MySQL", "CouchDB", "ETL Processes","Data Migration","ETL Pipelines"],
+},
+{
+  category: "Monitoring & Logging",
+  icon: Activity,
+  skills: ["Prometheus", "Grafana", "InfluxDB", "Telegraf", "API Monitoring", "Self-Healing Systems"],
+},
+{
+  category: "Configuration Management",
+  icon: Settings,
+  skills: ["Ansible", "Terraform"],
+},
+{
+  category: "Reverse Proxy & Service Mesh",
+  icon: Network,
+  skills: ["NGINX", "Ingress", "Istio Mesh"],
+},
+{
+  category: "Security",
+  icon: Shield,
+  skills: ["Teleport", "Self-hosted VPN"],
+},
+{
+  category: "Operating Systems",
+  icon: Terminal,
+  skills: ["Linux (Ubuntu)"],
+},
+{
+  category: "Optimization & Automation",
+  icon: Gauge,
+  skills: ["Server Management Platform", "Report Automation"],
+},
+{
+  category: "Development & Collaboration",
+  icon: Users,
+  skills: ["Admin Tools", "Multi-user Access", "Production Data Access Optimization"],
+},
+{
+  category: "Languages",
+  icon: Globe,
+  skills: ["Tamil","English", "Hindi", "Urdu"],
+},
 ];
 
 export default function Skills() {

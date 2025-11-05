@@ -21,6 +21,8 @@ const experiences = [
       "Built custom Grafana dashboards for real-time visibility into Docker container metrics, system health, and API usage",
       "Engineered a peer-to-peer VPN solution across 60+ vessels, allowing secure, scalable remote access",
       "Developed an Ansible-based continuous deployment system for automated backup and restore",
+      "Built a server management web application optimized for maritime operations to streamline data transfer and report automation",
+      "Deployed and managed Istio service mesh and NGINX Ingress for secure traffic management and TLS termination",
     ],
   },
   {

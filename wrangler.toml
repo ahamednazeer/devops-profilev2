@@ -1,0 +1,23 @@
+name = "devops-profilev2"
+main = "dist/cf-worker.js"
+compatibility_date = "2025-11-05"
+compatibility_flags = ["nodejs_compat"]
+minify = true
+
+[build]
+command = "npm run build"
+
+[assets]
+directory = "dist/public"
+binding = "ASSETS"
+
+[env.dev]
+name = "devops-profilev2-dev"
+vars = { NODE_ENV = "development" }
+
+[env.production]  
+name = "devops-profilev2"
+vars = { NODE_ENV = "production" }
+
+[vars]
+NODE_ENV = "production"
