@@ -84,7 +84,7 @@ export default function About() {
               </div>
               <div className="text-foreground/90 whitespace-pre-wrap leading-relaxed pl-4 border-l-2 border-primary/30">
                 {displayedText}
-                <span className="inline-block w-2 h-5 bg-primary animate-blink ml-1" />
+                <span className="inline-block w-2 h-4 bg-primary animate-blink ml-0.2 translate-y-1" />
               </div>
             </div>
           </GlassCard>

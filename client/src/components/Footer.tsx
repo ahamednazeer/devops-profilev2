@@ -19,14 +19,12 @@ export default function Footer() {
           <div className="flex items-center justify-center gap-2 mb-4">
             <Code className="w-5 h-5 text-primary animate-pulse" />
             <p className="font-mono text-base text-foreground">
-              <span className="text-primary">portfolio@syed-ahamed</span>:~$ █
+              <span className="text-primary">portfolio@syed-ahamed</span>
             </p>
           </div>
           
           <p className="text-foreground/80 text-sm md:text-base mb-3 flex items-center justify-center gap-2">
-            © {new Date().getFullYear()} Syed Ahamed. Built with 
-            <Heart className="w-4 h-4 text-red-500 animate-pulse inline" /> 
-            for DevOps.
+            © {new Date().getFullYear()} Syed Ahamed.
           </p>
         </motion.div>
       </div>
