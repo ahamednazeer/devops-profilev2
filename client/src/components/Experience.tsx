@@ -61,47 +61,43 @@ export default function Experience() {
           <span className="text-primary font-mono">~/</span>experience
         </motion.h2>
 
-        <div className="max-w-4xl mx-auto relative">
-          <div className="absolute left-8 md:left-10 top-6 bottom-6 w-0.5 bg-gradient-to-b from-primary via-cyan-500 to-primary opacity-30" />
-          
-          <div className="space-y-8">
+        <div className="max-w-5xl mx-auto">
+          <div className="space-y-6 md:space-y-8">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={isVisible ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 * (index + 1), type: "spring" }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.15 * index, type: "spring", stiffness: 100 }}
               className="relative"
             >
-            <div className="absolute left-6 md:left-8 top-8 w-5 h-5 rounded-full bg-primary shadow-lg shadow-primary/50 border-4 border-slate-950 z-10" />
-            
-            <GlassCard className="overflow-hidden ml-16 md:ml-20 hover:shadow-2xl transition-all duration-300 hover:border-primary/30">
+            <GlassCard className="overflow-hidden hover:shadow-2xl transition-all duration-300 hover:border-primary/30 hover:scale-[1.02]">
               <button
                 onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                className="w-full p-6 flex items-start justify-between text-left hover-elevate group"
+                className="w-full p-6 md:p-8 flex items-start justify-between text-left group"
                 data-testid={`button-experience-${index}`}
               >
-                <div className="flex gap-4 flex-1">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-cyan-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Building2 className="w-7 h-7 text-primary group-hover:text-cyan-400 transition-colors" />
+                <div className="flex gap-5 md:gap-6 flex-1">
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-primary/30 via-primary/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-all duration-300 shadow-xl border border-primary/20">
+                    <Building2 className="w-8 h-8 md:w-10 md:h-10 text-primary group-hover:text-cyan-400 transition-colors" />
                   </div>
                   
-                  <div className="flex-1">
-                    <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">{exp.company}</h3>
-                    <p className="text-primary font-mono text-sm md:text-base mt-1.5">{exp.role}</p>
-                    <div className="flex items-center gap-2 text-muted-foreground text-sm mt-2">
-                      <span className="px-2 py-1 bg-white/5 border border-white/10 rounded font-medium">{exp.location}</span>
-                      <span className="text-white/30">•</span>
-                      <span className="px-2 py-1 bg-primary/10 border border-primary/20 rounded font-medium text-primary">{exp.period}</span>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors mb-2">{exp.company}</h3>
+                    <p className="text-primary font-mono text-base md:text-lg font-semibold mb-3">{exp.role}</p>
+                    <div className="flex flex-wrap items-center gap-2 text-muted-foreground text-sm">
+                      <span className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg font-medium backdrop-blur-sm">{exp.location}</span>
+                      <span className="text-white/30 hidden sm:inline">•</span>
+                      <span className="px-3 py-1.5 bg-primary/10 border border-primary/30 rounded-lg font-medium text-primary backdrop-blur-sm">{exp.period}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 ml-4">
                   {expandedIndex === index ? (
-                    <ChevronUp className="w-5 h-5 text-primary group-hover:text-cyan-400 transition-colors" />
+                    <ChevronUp className="w-6 h-6 text-primary group-hover:text-cyan-400 transition-colors" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <ChevronDown className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
                   )}
                 </div>
               </button>
@@ -111,20 +107,20 @@ export default function Experience() {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  <div className="px-6 pb-6 border-t border-white/10 bg-gradient-to-b from-transparent to-white/5">
-                    <ul className="mt-6 space-y-4">
+                  <div className="px-6 md:px-8 pb-6 md:pb-8 pt-4 border-t border-white/10 bg-gradient-to-b from-white/5 to-transparent">
+                    <ul className="mt-4 space-y-3.5">
                       {exp.achievements.map((achievement, i) => (
                         <motion.li
                           key={i}
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: i * 0.05 }}
-                          className="flex gap-3 text-foreground/90 text-sm leading-relaxed hover:text-foreground transition-colors group/item"
+                          transition={{ delay: i * 0.04 }}
+                          className="flex gap-3.5 text-foreground/90 text-sm md:text-base leading-relaxed hover:text-foreground transition-colors group/item pl-2"
                         >
-                          <span className="text-primary flex-shrink-0 font-mono text-base group-hover/item:text-cyan-400 transition-colors">▸</span>
-                          <span>{achievement}</span>
+                          <span className="text-primary flex-shrink-0 font-bold text-lg mt-0.5 group-hover/item:text-cyan-400 transition-colors">•</span>
+                          <span className="flex-1">{achievement}</span>
                         </motion.li>
                       ))}
                     </ul>

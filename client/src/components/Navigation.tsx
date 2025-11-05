@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaLinkedin } from "react-icons/fa";
 import resumePdf from "@assets/Resume_1762335533633.pdf";
 
 const navItems = [
@@ -28,6 +29,29 @@ export default function Navigation() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isMobileMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <nav
@@ -64,6 +88,16 @@ export default function Navigation() {
               </a>
             ))}
             <a
+              href="https://www.linkedin.com/in/syed-ahamed-n-a19238172"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-foreground/80 hover:text-primary transition-colors hover:scale-110"
+              data-testid="link-linkedin"
+              aria-label="LinkedIn profile"
+            >
+              <FaLinkedin className="w-5 h-5" />
+            </a>
+            <a
               href={resumePdf}
               download="Syed_Ahamed_Resume.pdf"
               className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover-elevate active-elevate-2 transition-all flex items-center gap-2"
@@ -77,8 +111,10 @@ export default function Navigation() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
             data-testid="button-menu-toggle"
+            aria-expanded={isMobileMenuOpen}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -87,36 +123,57 @@ export default function Navigation() {
         <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden backdrop-blur-xl bg-slate-950/95 border-t border-white/10 overflow-hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="md:hidden fixed left-0 right-0 top-16 bottom-0 backdrop-blur-xl bg-slate-950/98 border-t border-white/10 overflow-y-auto"
           >
-            <div className="py-4">
-            {navItems.map((item) => (
-              <a
+            <div className="py-6 px-4 space-y-2">
+            {navItems.map((item, index) => (
+              <motion.a
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block py-3 px-4 text-foreground/80 hover:text-primary hover:bg-white/5 transition-colors"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.05 * index, duration: 0.2 }}
+                className="block py-4 px-5 text-lg font-medium text-foreground/90 hover:text-primary hover:bg-white/5 rounded-lg transition-all active:scale-95"
                 data-testid={`link-mobile-${item.label.toLowerCase()}`}
               >
                 {item.label}
-              </a>
+              </motion.a>
             ))}
-            <div className="px-4 pt-2 pb-1">
-              <a
+            <div className="pt-4 space-y-3">
+              <motion.a
+                href="https://www.linkedin.com/in/syed-ahamed-n-a19238172"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="block py-3.5 px-5 bg-white/5 border border-white/10 text-foreground rounded-lg font-medium hover:bg-white/10 transition-all text-center active:scale-95"
+                data-testid="mobile-link-linkedin"
+                aria-label="LinkedIn profile"
+              >
+                <FaLinkedin className="w-5 h-5 inline mr-2" />
+                LinkedIn
+              </motion.a>
+              <motion.a
                 href={resumePdf}
                 download="Syed_Ahamed_Resume.pdf"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-3 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover-elevate active-elevate-2 transition-all text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+                className="block py-3.5 px-5 bg-primary text-primary-foreground rounded-lg font-medium hover-elevate active-elevate-2 transition-all text-center active:scale-95"
                 data-testid="mobile-download-resume"
                 aria-label="Download resume"
               >
-                <Download className="w-4 h-4 inline mr-2" />
+                <Download className="w-5 h-5 inline mr-2" />
                 Download Resume
-              </a>
+              </motion.a>
             </div>
             </div>
           </motion.div>
