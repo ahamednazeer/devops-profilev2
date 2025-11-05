@@ -71,7 +71,7 @@ export default function Hero() {
               transition={{ delay: 0.8 }}
               className="text-sm sm:text-base text-foreground/80 max-w-2xl mx-auto leading-relaxed px-2"
             >
-              Dynamic DevOps Engineer with over two years of experience in managing and automating 
+              Dynamic DevOps Engineer with over two and a half years of experience in managing and automating 
               large-scale infrastructure across maritime environments. Expertise in containerization, 
               CI/CD pipelines, and cloud services.
             </motion.p>
