@@ -15,9 +15,16 @@ binding = "ASSETS"
 name = "devops-profilev2-dev"
 vars = { NODE_ENV = "development" }
 
-[env.production]  
+[env.prod]  
 name = "devops-profilev2"
 vars = { NODE_ENV = "production" }
 
 [vars]
 NODE_ENV = "production"
+
+[observability]
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true

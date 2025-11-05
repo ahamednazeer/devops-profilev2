@@ -33,9 +33,7 @@ export default function About() {
 
   return (
     <section className="py-16 md:py-24 relative" id="about" aria-labelledby="about-heading">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
-      
-      <div className="relative container mx-auto px-4" ref={ref}>
+      <div className="container mx-auto px-4" ref={ref}>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -84,7 +82,7 @@ export default function About() {
               </div>
               <div className="text-foreground/90 whitespace-pre-wrap leading-relaxed pl-4 border-l-2 border-primary/30">
                 {displayedText}
-                <span className="inline-block w-2 h-5 bg-primary animate-blink ml-1" />
+                <span className="inline-block w-2 h-4 bg-primary animate-blink ml-0.2 translate-y-1" />
               </div>
             </div>
           </GlassCard>

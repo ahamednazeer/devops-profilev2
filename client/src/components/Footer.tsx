@@ -4,11 +4,9 @@ import { Heart, Code } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="relative py-12 border-t border-white/20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900 to-slate-950" />
-      
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
       
-      <div className="relative container mx-auto px-4">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,23 +17,13 @@ export default function Footer() {
           <div className="flex items-center justify-center gap-2 mb-4">
             <Code className="w-5 h-5 text-primary animate-pulse" />
             <p className="font-mono text-base text-foreground">
-              <span className="text-primary">portfolio@syed-ahamed</span>:~$ █
+              <span className="text-primary">portfolio@syed-ahamed</span>
             </p>
           </div>
           
           <p className="text-foreground/80 text-sm md:text-base mb-3 flex items-center justify-center gap-2">
-            © {new Date().getFullYear()} Syed Ahamed. Built with 
-            <Heart className="w-4 h-4 text-red-500 animate-pulse inline" /> 
-            for DevOps.
+            © {new Date().getFullYear()} Syed Ahamed.
           </p>
-          
-          <div className="flex items-center justify-center gap-2 flex-wrap text-muted-foreground/80 text-xs md:text-sm">
-            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-medium hover:border-primary/50 transition-colors">React</span>
-            <span className="text-white/30">•</span>
-            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-medium hover:border-primary/50 transition-colors">TypeScript</span>
-            <span className="text-white/30">•</span>
-            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full font-medium hover:border-primary/50 transition-colors">Tailwind CSS</span>
-          </div>
         </motion.div>
       </div>
     </footer>

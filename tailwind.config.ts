@@ -101,8 +101,10 @@ export default {
           "50%": { opacity: "0" },
         },
         float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
+          "0%, 100%": { transform: "translate(0px, 0px)" },
+          "25%": { transform: "translate(10px, -30px)" },
+          "50%": { transform: "translate(-10px, -50px)" },
+          "75%": { transform: "translate(15px, -30px)" },
         },
         gradient: {
           "0%, 100%": { backgroundPosition: "0% 50%" },
@@ -113,7 +115,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "blink": "blink 1s step-end infinite",
-        "float": "float 6s ease-in-out infinite",
+        "float": "float 8s ease-in-out infinite",
         "gradient": "gradient 3s ease infinite",
       },
       backdropBlur: {

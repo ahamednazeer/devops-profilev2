@@ -6,15 +6,7 @@ import resumePdf from "@assets/Resume_1762335533633.pdf";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" id="home" role="banner">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900" />
-      
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
-      </div>
-
-      <div className="relative z-10 container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -71,7 +63,7 @@ export default function Hero() {
               transition={{ delay: 0.8 }}
               className="text-sm sm:text-base text-foreground/80 max-w-2xl mx-auto leading-relaxed px-2"
             >
-              Dynamic DevOps Engineer with over two years of experience in managing and automating 
+              Dynamic DevOps Engineer with over two and a half years of experience in managing and automating 
               large-scale infrastructure across maritime environments. Expertise in containerization, 
               CI/CD pipelines, and cloud services.
             </motion.p>
